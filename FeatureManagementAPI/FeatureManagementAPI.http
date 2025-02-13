@@ -1,0 +1,6 @@
+@FeatureManagementAPI_HostAddress = http://localhost:5110
+
+GET {{FeatureManagementAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
