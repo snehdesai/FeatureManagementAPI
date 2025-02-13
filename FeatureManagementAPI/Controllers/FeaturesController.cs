@@ -1,30 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FeatureManagementAPI.Models;
+using FeatureManagementAPI.Data;
 
 namespace FeatureManagementAPI.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class FeaturesController : ControllerBase
     {
-        public FeaturesController()
-        {
-           
-        }   
-    }
+        private readonly AppDbContext _context;
 
-    public class Feature
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string EstimatedComplexity { get; set; } // S, M, L, XL
-        public string Status { get; set; } // New, Active, Closed, Abandoned
-        public DateTime? TargetCompletionDate { get; set; }
-        public DateTime? ActualCompletionDate { get; set; }
+        public FeaturesController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/Features
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Feature>>> GetFeatures()
+        {
+            return await _context.Features.ToListAsync();
+        }
+
+        // GET: api/Features/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Feature>> GetFeature(int id)
+        {
+            var feature = await _context.Features.FindAsync(id);
+
+            if (feature == null)
+            {
+                return NotFound();
+            }
+
+            return feature;
+        }
+
+        // POST: api/Features
+        [HttpPost]
+        public async Task<ActionResult<Feature>> PostFeature(Feature feature)
+        {
+            _context.Features.Add(feature);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetFeature", new { id = feature.Id }, feature);
+        }
+
+       
     }
 }
