@@ -2,9 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using FeatureManagementAPI.Models;
 using FeatureManagementAPI.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FeatureManagementAPI.Controllers
 {

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureManagementAPI", "FeatureManagementAPI\FeatureManagementAPI.csproj", "{F9F4C147-430B-4C35-BD4D-D6C684F4801F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureManagementAPITests", "FeatureManagementAPITests\FeatureManagementAPITests.csproj", "{03A7E8B4-1ABB-440B-BB63-6C3C3C93883A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F9F4C147-430B-4C35-BD4D-D6C684F4801F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F4C147-430B-4C35-BD4D-D6C684F4801F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F4C147-430B-4C35-BD4D-D6C684F4801F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A7E8B4-1ABB-440B-BB63-6C3C3C93883A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A7E8B4-1ABB-440B-BB63-6C3C3C93883A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A7E8B4-1ABB-440B-BB63-6C3C3C93883A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A7E8B4-1ABB-440B-BB63-6C3C3C93883A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

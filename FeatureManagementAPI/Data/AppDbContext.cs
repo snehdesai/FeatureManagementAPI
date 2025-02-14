@@ -7,6 +7,6 @@ namespace FeatureManagementAPI.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Feature> Features { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
     }
 }
