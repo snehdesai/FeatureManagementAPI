@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using FeatureManagementAPI.Models;
 using FeatureManagementAPI.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FeatureManagementAPI.Controllers
 {
@@ -59,22 +62,14 @@ namespace FeatureManagementAPI.Controllers
             return CreatedAtAction("GetFeature", new { id = feature.Id }, feature);
         }
 
-        // PUT: api/Features/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFeature(int id, Feature feature)
         {
-            // Check if the ID in the URL matches the ID in the request body
             if (id != feature.Id)
             {
-                return BadRequest("ID mismatch");
+                return BadRequest(new { message = "ID mismatch" });
             }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Mark the feature as modified
             _context.Entry(feature).State = EntityState.Modified;
 
             try
@@ -85,7 +80,7 @@ namespace FeatureManagementAPI.Controllers
             {
                 if (!FeatureExists(id))
                 {
-                    return NotFound();
+                    return NotFound(new { message = "Feature not found" });
                 }
                 else
                 {
@@ -93,10 +88,29 @@ namespace FeatureManagementAPI.Controllers
                 }
             }
 
-            // Return 204
-            return NoContent();
+            return Ok(feature); // Return the updated feature as JSON
         }
 
+        // DELETE: api/Features/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFeature(int id)
+        {
+            // Find the feature by ID
+            var feature = await _context.Features.FindAsync(id);
+
+            // Return 404 if the feature is not found
+            if (feature == null)
+            {
+                return NotFound();
+            }
+
+            // Remove the feature from the database
+            _context.Features.Remove(feature);
+            await _context.SaveChangesAsync();
+
+            // Return 204 No Content
+            return NoContent();
+        }
 
         // Method to check if a feature exists
         private bool FeatureExists(int id)
