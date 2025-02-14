@@ -20,10 +20,10 @@ namespace FeatureManagementAPI.Models
         [Required]
         public string Status { get; set; } // New, Active, Closed, Abandoned
 
-        [DataType(DataType.Date)]
+        [FutureDate(ErrorMessage = "Target Completion Date must be a future date.")]
         public DateTime? TargetCompletionDate { get; set; }
 
-        [DataType(DataType.Date)]
+        [FutureDate(ErrorMessage = "Actual Completion Date must be a future date.")]
         public DateTime? ActualCompletionDate { get; set; }
     }
 }

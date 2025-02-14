@@ -58,10 +58,10 @@ namespace FeatureManagementAPI.Controllers
             _context.Features.Add(feature);
             await _context.SaveChangesAsync();
 
-            // Return 201 Created with the location of the new resource
             return CreatedAtAction("GetFeature", new { id = feature.Id }, feature);
         }
 
+        // PUT: api/Features/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFeature(int id, Feature feature)
         {
@@ -88,7 +88,7 @@ namespace FeatureManagementAPI.Controllers
                 }
             }
 
-            return Ok(feature); // Return the updated feature as JSON
+            return Ok(feature);
         }
 
         // DELETE: api/Features/5
